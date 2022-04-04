@@ -1,3 +1,4 @@
+/*
 package com.userservice.model;
 
 import lombok.AllArgsConstructor;
@@ -18,3 +19,4 @@ public class JwtAuthenticationResponse {
         private String tokenType;
         private boolean reactivated;
 }
+*/
