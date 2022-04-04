@@ -1,8 +1,9 @@
+/*
 package com.userservice.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.userservice.persistence.jpa.UserEntity;
-import com.userservice.persistence.jpa.UserStatus;
+import com.userservice.persistence.jpa.entity.UserEntity;
+import com.userservice.persistence.jpa.enums.UserStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 @Getter
@@ -32,26 +34,29 @@ public class UserPrincipal implements UserDetails {
     private Integer failedLoginCount;
     private String userIp;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+    private Collection<? extends GrantedAuthority> authorities;
 
     public static UserPrincipal constructUserPrinciple(UserEntity user) {
         return UserPrincipal.builder()
                 .id(user.getId())
                 .name(user.getUserProfile().getFirstName())
                 .lastName(user.getUserProfile().getLastName())
-                .userName(user.getUserProfile().getNickname())
+                .userName(user.getUserProfile().getNickName())
                 .email(user.getUserProfile().getEmail())
                 .password(user.getPassword())
                 .failedLoginCount(user.getFailingCount())
+                .authorities(Collections.emptyList())
                 .build();
     }
 
     @Override
     public String getUsername() {
         return userName;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
@@ -96,3 +101,4 @@ public class UserPrincipal implements UserDetails {
         return Objects.hash(id);
     }
 }
+*/

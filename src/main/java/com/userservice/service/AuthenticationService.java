@@ -1,10 +1,12 @@
+/*
 package com.userservice.service;
 
 import com.userservice.model.JwtAuthenticationResponse;
 import com.userservice.model.LoginRequest;
-import com.userservice.persistence.jpa.UserEntity;
-import com.userservice.persistence.jpa.UserStatus;
-import com.userservice.repository.UserRepository;
+import com.userservice.persistence.jpa.entity.UserEntity;
+import com.userservice.persistence.jpa.enums.UserStatus;
+import com.userservice.persistence.jpa.repository.UserRepository;
+import com.userservice.security.JwtToken;
 import com.userservice.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -22,7 +24,7 @@ import java.util.Objects;
 public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
-    private final Jwt
+    private final JwtToken jwtToken;
     private final UserRepository userRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
     private static String BEARER = "Bearer";
@@ -41,8 +43,8 @@ public class AuthenticationService {
         failingCount(userPrincipal);
         return JwtAuthenticationResponse.builder()
                 .tokenType(BEARER)
-                .accessToken()
-
+                .accessToken(jwtToken.generateToken(authentication, originalIp))
+                .build();
     }
 
     private void failingCount(UserPrincipal userPrincipal){
@@ -57,3 +59,4 @@ public class AuthenticationService {
         }
     }
 }
+*/

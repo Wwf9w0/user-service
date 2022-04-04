@@ -1,4 +1,4 @@
-package com.userservice.persistence.jpa;
+package com.userservice.persistence.jpa.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
