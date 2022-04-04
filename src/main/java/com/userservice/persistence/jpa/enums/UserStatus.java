@@ -12,7 +12,7 @@ public enum UserStatus {
     PASSIVE_USER(2),
     BLOCKED(-1);
 
-    private Integer status;
+    private final Integer status;
 
     public static UserStatus value (final int status){
         for (UserStatus userStatus : UserStatus.values()){

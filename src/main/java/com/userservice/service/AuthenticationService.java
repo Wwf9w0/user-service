@@ -1,13 +1,15 @@
-/*
 package com.userservice.service;
 
 import com.userservice.model.JwtAuthenticationResponse;
 import com.userservice.model.LoginRequest;
 import com.userservice.persistence.jpa.entity.UserEntity;
+import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.persistence.jpa.enums.UserStatus;
 import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.security.JwtToken;
 import com.userservice.security.UserPrincipal;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -27,23 +30,19 @@ public class AuthenticationService {
     private final JwtToken jwtToken;
     private final UserRepository userRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
-    private static String BEARER = "Bearer";
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public JwtAuthenticationResponse authenticate(String originalIp, LoginRequest request){
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername()
-        , request.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        assertLogin(userPrincipal);
+    public JwtAuthenticationResponse authenticate( LoginRequest request){
+        UserProfileEntity inDb = userService.findByUserName(request.getUsername());
+        String token = Jwts.builder().setSubject(""+inDb.getId())
+                .signWith(SignatureAlgorithm.HS512, "my-app-secret").compact();
 
-        UserEntity user = userRepository.findById(userPrincipal.getId()).orElse(null);
-        user.setStatus(UserStatus.ACTIVE.getStatus());
-        userRepository.save(user);
-        failingCount(userPrincipal);
+
         return JwtAuthenticationResponse.builder()
-                .tokenType(BEARER)
-                .accessToken(jwtToken.generateToken(authentication, originalIp))
+                .accessToken(token)
+                .tokenType("Bearer")
+                .reactivated(true)
                 .build();
     }
 
@@ -53,10 +52,7 @@ public class AuthenticationService {
             applicationEventPublisher.publishEvent(userPrincipal.getId());
         }
     }
-    private void assertLogin(UserPrincipal userPrincipal){
-        if (Objects.nonNull(userPrincipal.getFailedLoginCount() >= 3)){
-            throw new LockedException("Too many failure login attemt!");
-        }
+    private void assertLogin(){
+        throw new LockedException("Too many failure login attemt!");
     }
 }
-*/

@@ -1,4 +1,3 @@
-/*
 
 package com.userservice.security;
 
@@ -20,29 +19,26 @@ import static com.google.common.net.HttpHeaders.X_FORWARDED_FOR;
 @Component
 public class JwtToken {
 
-    public String generateToken(final Authentication authentication, String originalIp){
+    public String generateToken(final Authentication authentication){
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        return getAccessToken(claims(userPrincipal, originalIp));
+        return getAccessToken(claims(userPrincipal));
     }
 
     public String getAccessToken( Claims claims){
         final Date now = new Date();
         final Date expireDate = new Date(now.getTime() + 120000);
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, "eq")
                 .compact();
-        return token;
     }
 
-    private Claims claims (UserPrincipal userPrincipal, String originalIp){
+    private Claims claims (UserPrincipal userPrincipal){
         Claims claims = Jwts.claims().setSubject(Long.toString(userPrincipal.getId()));
         claims.put("scopes", userPrincipal.getAuthorities().stream().map(Objects::toString).collect(Collectors.toList()));
-        claims.put(X_FORWARDED_FOR, originalIp);
         return claims;
     }
 }
 
-*/

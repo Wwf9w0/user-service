@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,6 +21,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+@ToString
 @Entity
 @Table(name = "user", indexes = {@Index(name = "IDX_USER_ID", columnList = "id")})
 @NoArgsConstructor

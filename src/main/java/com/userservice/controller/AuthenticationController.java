@@ -1,4 +1,3 @@
-/*
 package com.userservice.controller;
 
 import com.userservice.model.JwtAuthenticationResponse;
@@ -23,9 +22,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> login(
-            @RequestHeader(name = X_FORWARDED_FOR) String originalIp,
             @RequestBody LoginRequest request){
-        return ResponseEntity.ok(authenticationService.authenticate(originalIp, request));
+        return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }
-*/

@@ -1,4 +1,3 @@
-/*
 package com.userservice.model;
 
 import lombok.AllArgsConstructor;
@@ -17,4 +16,3 @@ public class LoginRequest {
     private String username;
     private String password;
 }
-*/

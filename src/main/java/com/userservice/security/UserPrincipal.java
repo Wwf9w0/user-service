@@ -1,4 +1,3 @@
-/*
 
 package com.userservice.security;
 
@@ -29,26 +28,12 @@ public class UserPrincipal implements UserDetails {
 
     @JsonIgnore
     private String mobileNUmber;
-
+    @JsonIgnore
     private String password;
     private UserStatus userStatus;
     private Integer failedLoginCount;
     private String userIp;
 
-    private Collection<? extends GrantedAuthority> authorities;
-
-    public static UserPrincipal constructUserPrinciple(UserEntity user) {
-        return UserPrincipal.builder()
-                .id(user.getId())
-                .name(user.getUserProfile().getFirstName())
-                .lastName(user.getUserProfile().getLastName())
-                .userName(user.getUserProfile().getNickName())
-                .email(user.getUserProfile().getEmail())
-                .password(user.getPassword())
-                .failedLoginCount(user.getFailingCount())
-                .authorities(Collections.emptyList())
-                .build();
-    }
 
     @Override
     public String getUsername() {
@@ -57,7 +42,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
@@ -102,4 +87,3 @@ public class UserPrincipal implements UserDetails {
         return Objects.hash(id);
     }
 }
-*/

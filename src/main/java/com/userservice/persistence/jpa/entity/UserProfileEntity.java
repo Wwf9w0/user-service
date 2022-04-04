@@ -1,7 +1,10 @@
 package com.userservice.persistence.jpa.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.yaml.snakeyaml.events.Event;
@@ -14,8 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
+@ToString
 @Table(name = "user_profile")
 @RequiredArgsConstructor
 public class UserProfileEntity {
