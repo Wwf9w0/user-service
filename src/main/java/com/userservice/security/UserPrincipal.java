@@ -33,6 +33,21 @@ public class UserPrincipal implements UserDetails {
     private UserStatus userStatus;
     private Integer failedLoginCount;
     private String userIp;
+    private Collection<? extends GrantedAuthority> authorities;
+
+
+    public static UserPrincipal constructUserPrinciple(UserEntity user) {
+        return UserPrincipal.builder()
+                .id(user.getId())
+                .name(user.getUserProfile().getFirstName())
+                .lastName(user.getUserProfile().getLastName())
+                .userName(user.getUserProfile().getNickName())
+                .email(user.getUserProfile().getEmail())
+                .password(user.getPassword())
+                .failedLoginCount(user.getFailingCount())
+                .authorities(Collections.emptyList())
+                .build();
+    }
 
 
     @Override

@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -36,6 +37,9 @@ public class UserEntity {
     private String password;
     @Column
     private Integer status;
+
+    @Column
+    private String userId = UUID.randomUUID().toString();
     @Column
     private Integer failingCount;
     @Column

@@ -1,6 +1,7 @@
 package com.userservice.configuration;
 
 import com.userservice.persistence.jpa.repository.UserProfileRepository;
+import com.userservice.security.JwtUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserProfileRepository userRepo;
     private final AuthenticationError error;
+    private final JwtUserDetailService userDetailService;
 
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -42,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService())
+        authenticationManagerBuilder.userDetailsService(userDetailService)
                 .passwordEncoder(passwordEncoder());
     }
 
