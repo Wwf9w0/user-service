@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static java.lang.String.format;
 
@@ -30,23 +31,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
-    public AuthenticationManager authenticationManagerNname() throws Exception{
+    public AuthenticationManager authenticationManagerNname() throws Exception {
         return super.authenticationManagerBean();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService())
                 .passwordEncoder(passwordEncoder());
     }
 
     @Override
-    public void configure(HttpSecurity http) throws Exception{
+    public void configure(HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
@@ -59,8 +60,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers( "/auth/login/**")
-                .permitAll();
+                .antMatchers(HttpMethod.PUT, "/api/1.0/users/{username}").authenticated()
+                .and()
+                .authorizeRequests().anyRequest().permitAll();
+        http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
+    }
+
+    @Bean
+    TokenFilter tokenFilter() {
+        return new TokenFilter();
     }
 
 }

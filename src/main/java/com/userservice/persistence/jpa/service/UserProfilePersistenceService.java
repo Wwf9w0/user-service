@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserProfilePersistenceService {
     private final UserProfileRepository userProfileRepository;
 
-    public UserProfileEntity getProfile(Long id){
-        return userProfileRepository.findById(id).orElse(null);
+    public UserProfileEntity getProfile(String name){
+        return userProfileRepository.findByNickName(name).orElse(null);
     }
 
 }

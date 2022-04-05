@@ -14,9 +14,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -42,6 +44,8 @@ public class UserEntity {
     private UserPreferencesEntity userPreferences;
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfileEntity userProfile;
+    @OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+    private List<Token> tokens;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

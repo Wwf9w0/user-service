@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserProfileService {
     private final UserProfilePersistenceService persistenceService;
 
-    public UserProfileEntity getProfile(Long id){
-        return persistenceService.getProfile(id);
+    public UserProfileEntity getProfile(String name){
+        return persistenceService.getProfile(name);
     }
 }
