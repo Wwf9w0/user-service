@@ -27,7 +27,7 @@ public class UserPersistenceService {
         return userRepository.save(user);
     }
 
-    public UserProfileEntity findByUserName(String userName){
-        return repository.findByNickName(userName).orElse(null);
+    public Optional<UserProfileEntity> userget(String username){
+        return repository.findByNickName(username);
     }
 }

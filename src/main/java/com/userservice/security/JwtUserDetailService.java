@@ -24,8 +24,7 @@ public class JwtUserDetailService implements UserDetailsService {
     @Transactional
 
     public UserDetails loadUserByUsername(String value) throws UsernameNotFoundException {
-        final UserEntity user = userRepository.findByUserID(value);
-        return createPrincipal(user);
+        return null;
     }
 
     private UserDetails createPrincipal(final UserEntity user){

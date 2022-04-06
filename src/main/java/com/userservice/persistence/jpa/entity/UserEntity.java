@@ -19,7 +19,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -30,7 +29,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
-
     @Id
     private Long id;
     @Column
@@ -39,7 +37,7 @@ public class UserEntity {
     private Integer status;
 
     @Column
-    private String userId = UUID.randomUUID().toString();
+    private String userId;
     @Column
     private Integer failingCount;
     @Column

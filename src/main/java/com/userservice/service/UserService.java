@@ -6,6 +6,8 @@ import com.userservice.persistence.jpa.service.UserPersistenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -17,8 +19,8 @@ public class UserService {
         return userPersistenceService.saveUser(user);
     }
 
-    public UserProfileEntity findByUserName(String userName){
-        return userPersistenceService.findByUserName(userName);
+    public Optional<UserProfileEntity> findByUserName(String userName){
+        return userPersistenceService.userget(userName);
     }
 
 

@@ -1,14 +1,11 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:./users;AUTO_SERVER=TRUE
-    username: sa
+    url: jdbc:mysql://localhost:3306/mysql
+    username: root
+    password: password
     #generate-unique-name: false
   jpa:
     hibernate:
-      ddl-auto: validate
-      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
 

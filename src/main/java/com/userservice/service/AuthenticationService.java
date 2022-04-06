@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +35,8 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     public JwtAuthenticationResponse authenticate( LoginRequest request){
-        UserProfileEntity inDb = userService.findByUserName(request.getUsername());
-        String token = Jwts.builder().setSubject(""+inDb.getId())
+        Optional<UserProfileEntity> inDb = userService.findByUserName(request.getUsername());
+        String token = Jwts.builder().setSubject(""+inDb.get().getNickName())
                 .signWith(SignatureAlgorithm.HS512, "my-app-secret").compact();
 
 

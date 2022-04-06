@@ -1,3 +1,4 @@
+/*
 package com.userservice.configuration;
 
 import com.userservice.persistence.jpa.repository.UserProfileRepository;
@@ -75,3 +76,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+*/
