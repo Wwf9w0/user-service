@@ -2,7 +2,6 @@ package com.userservice.controller;
 
 import com.userservice.model.JwtAuthenticationResponse;
 import com.userservice.model.LoginRequest;
-import com.userservice.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +17,10 @@ import static com.google.common.net.HttpHeaders.X_FORWARDED_FOR;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthenticationController {
-    private final AuthenticationService authenticationService;
 
-    @PostMapping("/login")
+  /*  @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> login(
             @RequestBody LoginRequest request){
         return ResponseEntity.ok(authenticationService.authenticate(request));
-    }
+    }*/
 }

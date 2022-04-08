@@ -6,7 +6,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -19,10 +18,10 @@ import static com.google.common.net.HttpHeaders.X_FORWARDED_FOR;
 @Component
 public class JwtToken {
 
-    public String generateToken(final Authentication authentication){
+/*    public String generateToken(final Authentication authentication){
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return getAccessToken(claims(userPrincipal));
-    }
+    }*/
 
     public String getAccessToken( Claims claims){
         final Date now = new Date();
@@ -35,10 +34,10 @@ public class JwtToken {
                 .compact();
     }
 
-    private Claims claims (UserPrincipal userPrincipal){
+ /*   private Claims claims (UserPrincipal userPrincipal){
         Claims claims = Jwts.claims().setSubject(Long.toString(userPrincipal.getId()));
         claims.put("scopes", userPrincipal.getAuthorities().stream().map(Objects::toString).collect(Collectors.toList()));
         return claims;
-    }
+    }*/
 }
 

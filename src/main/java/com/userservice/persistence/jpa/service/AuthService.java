@@ -4,13 +4,10 @@ import com.userservice.persistence.jpa.entity.Token;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.repository.TokenRepository;
 import com.userservice.persistence.jpa.repository.UserRepository;
-import com.userservice.security.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.LockedException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

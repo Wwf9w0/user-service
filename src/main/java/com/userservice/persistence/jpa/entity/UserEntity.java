@@ -4,32 +4,36 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
-@Builder
 @ToString
 @Entity
 @Table(name = "user", indexes = {@Index(name = "IDX_USER_ID", columnList = "id")})
-@NoArgsConstructor
-@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@RequiredArgsConstructor
 public class UserEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String password;
@@ -46,8 +50,6 @@ public class UserEntity {
     private UserPreferencesEntity userPreferences;
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfileEntity userProfile;
-    @OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-    private List<Token> tokens;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

@@ -1,3 +1,4 @@
+/*
 package com.userservice.service;
 
 import com.userservice.model.JwtAuthenticationResponse;
@@ -27,12 +28,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtToken jwtToken;
-    private final UserRepository userRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
     public JwtAuthenticationResponse authenticate( LoginRequest request){
         Optional<UserProfileEntity> inDb = userService.findByUserName(request.getUsername());
@@ -57,3 +54,4 @@ public class AuthenticationService {
         throw new LockedException("Too many failure login attemt!");
     }
 }
+*/

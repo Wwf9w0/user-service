@@ -1,3 +1,4 @@
+/*
 package com.userservice.security;
 
 import com.userservice.persistence.jpa.entity.UserEntity;
@@ -32,3 +33,4 @@ public class JwtUserDetailService implements UserDetailsService {
         return userPrincipal;
     }
 }
+*/

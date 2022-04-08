@@ -2,12 +2,7 @@ package com.userservice.configuration;
 
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.service.AuthService;
-import com.userservice.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -30,11 +25,11 @@ public class TokenFilter extends OncePerRequestFilter {
             String token = authorization.substring(7);
 
             UserEntity user = authService.getUserDetails(token);
-            if(user != null) {
+          /*  if(user != null) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, null);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
+            }*/
         }
 
         filterChain.doFilter(request, response);
