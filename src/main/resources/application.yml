@@ -14,6 +14,6 @@ spring:
 
 
 security:
-  jwtSecret: localSecret!
-  jwtExpirationInMs: 120000
+  jwtSecret: localSecret
+  jwtExpiretionMs: 120000
   jwtRefreshExpirationInMs: 120000

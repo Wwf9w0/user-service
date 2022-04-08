@@ -34,4 +34,11 @@ public class UserDetailService implements UserDetailsService {
         final UserPrincipal userPrincipal = UserPrincipal.constructUserPrinciple(user);
         return userPrincipal;
     }
+
+    @Transactional
+    public UserPrincipal loadByUserId(final Long id){
+        UserEntity user = userRepository.findById(id).orElse(null);
+        return UserPrincipal.constructUserPrinciple(user);
+
+    }
 }

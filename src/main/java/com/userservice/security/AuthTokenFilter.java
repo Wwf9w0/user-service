@@ -3,11 +3,12 @@ package com.userservice.security;
 import com.userservice.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -15,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ import java.util.Objects;
 @Component
 public class AuthTokenFilter extends OncePerRequestFilter {
 
-    private final JwtToken jwtToken;
+    private final JwtTokenProvider tokenProvider;
     private final UserDetailService userDetailService;
 
     @Override
@@ -31,31 +31,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
+           final String jwtToken = tokenProvider.extractTokenRequest(request);
+           if (StringUtils.isNotEmpty(jwtToken) && tokenProvider.validateJwtToken(jwtToken));
+           final Long id = tokenProvider.extractExtarnalNo(jwtToken);
+           final UserPrincipal userPrincipal = userDetailService.loadByUserId(id);
 
-        try {
-
-            String token = parseJwt(request);
-            if (Objects.nonNull(token) && jwtToken.validateJwtToken(token)) {
-                String userName = jwtToken.generateTokenFromUserName(token);
-                UserDetails userDetails = userDetailService.loadUserByUsername(userName);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-                        userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            }
-
-        } catch (Exception e) {
-            log.error("Cannot set user authentication: {}", e.getMessage());
-        }
-        filterChain.doFilter(request, response);
-
-    }
-
-    private String parseJwt(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization");
-
-        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-            return headerAuth.substring(7, headerAuth.length());
-        }
-        return null;
+           final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                   new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
+            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            filterChain.doFilter(request,response);
     }
 }
