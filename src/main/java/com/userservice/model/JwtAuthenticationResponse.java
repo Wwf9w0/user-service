@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -17,4 +19,6 @@ public class JwtAuthenticationResponse {
         private String refreshToken;
         private String tokenType;
         private boolean reactivated;
+        private List<String> roles;
+
 }
