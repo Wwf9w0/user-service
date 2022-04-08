@@ -12,8 +12,9 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.H2Dialect
 
-
+server:
+  port: 8082
 security:
   jwtSecret: localSecret
-  jwtExpiretionMs: 120000
-  jwtRefreshExpirationInMs: 120000
+  jwtExpiretionMs: 360000
+  jwtRefreshExpirationInMs: 360000

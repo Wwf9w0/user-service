@@ -45,9 +45,12 @@ public class UserEntity {
     @Column
     private Long extarnalNo;
 
-
     @Column
     private String password;
+
+    @Column
+    private String userName;
+
     @Column
     private Integer status;
 

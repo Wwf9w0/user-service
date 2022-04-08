@@ -25,12 +25,9 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private String email;
     @JsonIgnore
-    private String mobileNUmber;
-    @JsonIgnore
     private String password;
     private UserStatus userStatus;
     private Integer failedLoginCount;
-    private String userIp;
     private Collection<? extends GrantedAuthority> authorities;
 
 
@@ -39,7 +36,7 @@ public class UserPrincipal implements UserDetails {
                 .id(user.getId())
                 .name(user.getUserProfile().getFirstName())
                 .lastName(user.getUserProfile().getLastName())
-                .userName(user.getUserProfile().getNickName())
+                .userName(user.getUserProfile().getUserName())
                 .email(user.getUserProfile().getEmail())
                 .password(user.getPassword())
                 .failedLoginCount(user.getFailingCount())

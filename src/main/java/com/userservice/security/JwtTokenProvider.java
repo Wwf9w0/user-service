@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class JwtTokenProvider {
 
     public String generateAccessToken(Long id, Claims claims) {
         final Date now = new Date();
-        final Date expireDate = new Date(now.getTime() + properties.getJwtExpiretionMs());
+        final Date expireDate =  Date.from(Instant.ofEpochSecond(now.getTime() + properties.getJwtExpiretionMs()));
         return Jwts.builder().setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expireDate)

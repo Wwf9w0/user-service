@@ -36,7 +36,7 @@ public class UserProfileEntity {
     @Column
     private String lastName;
     @Column
-    private String nickName;
+    private String userName;
     @Column
     private String email;
     @Column

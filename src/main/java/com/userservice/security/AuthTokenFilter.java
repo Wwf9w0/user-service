@@ -31,15 +31,18 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-           final String jwtToken = tokenProvider.extractTokenRequest(request);
-           if (StringUtils.isNotEmpty(jwtToken) && tokenProvider.validateJwtToken(jwtToken));
-           final Long id = tokenProvider.extractExtarnalNo(jwtToken);
-           final UserPrincipal userPrincipal = userDetailService.loadByUserId(id);
 
-           final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                   new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
-            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+           final String jwtToken = tokenProvider.extractTokenRequest(request);
+           if (jwtToken == null){
+               if (StringUtils.isNotEmpty(jwtToken) && tokenProvider.validateJwtToken(jwtToken));
+               final Long id = tokenProvider.extractExtarnalNo(jwtToken);
+               final UserPrincipal userPrincipal = userDetailService.loadByUserId(id);
+
+               final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                       new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
+               usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+               SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+           }
             filterChain.doFilter(request,response);
     }
 }

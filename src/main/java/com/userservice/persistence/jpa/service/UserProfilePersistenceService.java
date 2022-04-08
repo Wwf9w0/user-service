@@ -14,7 +14,7 @@ public class UserProfilePersistenceService {
     private final UserProfileRepository userProfileRepository;
 
     public UserProfileEntity getProfile(String name){
-        return userProfileRepository.findByNickName(name).orElse(null);
+        return userProfileRepository.findByUserName(name).orElse(null);
     }
 
 }

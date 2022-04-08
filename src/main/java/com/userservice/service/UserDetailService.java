@@ -23,9 +23,9 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        UserEntity  user = userRepository.findById(NumberUtils.createLong(id))
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with userId: " + id));
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        UserEntity  user = userRepository.findByUserName(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with userName: " + userName));
         return createPrincipal(user);
     }
 

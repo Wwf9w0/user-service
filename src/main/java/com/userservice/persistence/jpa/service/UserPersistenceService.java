@@ -24,12 +24,12 @@ public class UserPersistenceService {
         UserProfileEntity userProfile = new UserProfileEntity();
         userProfile.setEmail(user.getUserProfile().getEmail());
         userProfile.setFirstName(user.getUserProfile().getFirstName());
-        userProfile.setNickName(user.getUserProfile().getNickName());
-        log.info("Save user by nickName : {}", user.getUserProfile().getNickName());
+        userProfile.setUserName(user.getUserProfile().getUserName());
+        log.info("Save user by nickName : {}", user.getUserProfile().getUserName());
         return userRepository.save(user);
     }
 
     public Optional<UserProfileEntity> userget(String username){
-        return repository.findByNickName(username);
+        return repository.findByUserName(username);
     }
 }
