@@ -18,8 +18,13 @@ import java.util.Objects;
 public class AuthenticationService{
 
     private static final String BEARER = "Bearer";
+    private final AuthenticationManager authenticationManager;
 
     public JwtAuthenticationResponse authenticate(LoginRequest request) {
+    Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),
+            request.getPassword()));
+
+
     return null;
     }
 
