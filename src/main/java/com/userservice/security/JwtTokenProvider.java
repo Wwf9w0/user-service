@@ -95,7 +95,8 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    public String  extractUserName(final String token){
-        return getClaimsByToken(token).getSubject();
+    public Long extractExtarnalNo(final String token){
+        return Long.parseLong(getClaimsByToken(token).getSubject());
     }
+
 }

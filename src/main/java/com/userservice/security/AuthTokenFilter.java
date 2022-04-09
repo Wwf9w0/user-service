@@ -1,7 +1,5 @@
 package com.userservice.security;
 
-import com.userservice.persistence.jpa.entity.UserEntity;
-import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +24,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider tokenProvider;
     private final UserDetailService userDetailService;
-    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -35,11 +32,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
            final String jwtToken = tokenProvider.extractTokenRequest(request);
-           if (jwtToken != null){
-               if (StringUtils.isNotEmpty(jwtToken));
-
-               final String userName = tokenProvider.extractUserName(jwtToken);
-               final UserPrincipal userPrincipal = (UserPrincipal) userDetailService.loadUserByUsername(userName);
+           if (jwtToken == null){
+               if (StringUtils.isNotEmpty(jwtToken) && tokenProvider.validateJwtToken(jwtToken));
+               final Long id = tokenProvider.extractExtarnalNo(jwtToken);
+               final UserPrincipal userPrincipal = userDetailService.loadByUserId(id);
 
                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                        new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
