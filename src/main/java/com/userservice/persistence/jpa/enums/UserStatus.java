@@ -14,9 +14,9 @@ public enum UserStatus {
 
     private final Integer status;
 
-    public static UserStatus value (final int status){
-        for (UserStatus userStatus : UserStatus.values()){
-            if (Objects.equals(userStatus.getStatus(), status)){
+    public static UserStatus value(final int status) {
+        for (UserStatus userStatus : UserStatus.values()) {
+            if (Objects.equals(userStatus.getStatus(), status)) {
                 return userStatus;
             }
         }

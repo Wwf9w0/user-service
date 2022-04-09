@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserProfileService {
+
     private final UserProfilePersistenceService persistenceService;
 
-    public UserProfileEntity getProfile(String name){
-        return persistenceService.getProfile(name);
+    public UserProfileEntity getProfile(Long id) {
+        return persistenceService.getProfile(id);
     }
 }

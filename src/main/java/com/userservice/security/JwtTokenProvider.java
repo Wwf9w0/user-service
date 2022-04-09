@@ -29,7 +29,6 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
 @Slf4j
 public class JwtTokenProvider {
 
-    private static final String SCOPES = "scopes";
     private static final String BEARER = "Bearer";
     private final JwtProperties properties;
 

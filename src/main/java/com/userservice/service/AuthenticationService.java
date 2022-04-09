@@ -1,6 +1,5 @@
 package com.userservice.service;
 
-import com.userservice.configuration.JwtProperties;
 import com.userservice.model.JwtAuthenticationResponse;
 import com.userservice.model.LoginRequest;
 import com.userservice.persistence.jpa.entity.RefreshTokenEntity;
@@ -43,5 +42,4 @@ public class AuthenticationService {
                 .roles(roles)
                 .build();
     }
-
 }

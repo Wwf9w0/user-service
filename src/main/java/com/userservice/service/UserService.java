@@ -21,18 +21,15 @@ public class UserService {
 
     private final UserPersistenceService userPersistenceService;
 
-
-    public UserEntity save(UserEntity user){
-BCryptPasswordEncoder password1 = new BCryptPasswordEncoder();
-String p = password1.encode(user.getPassword());
-user.setPassword(p);
-log.info(user.getPassword());
+    public UserEntity save(UserEntity user) {
+        BCryptPasswordEncoder password1 = new BCryptPasswordEncoder();
+        String p = password1.encode(user.getPassword());
+        user.setPassword(p);
+        log.info(user.getPassword());
         return userPersistenceService.saveUser(user);
     }
 
-    public Optional<UserProfileEntity> findByUserName(String userName){
+    public Optional<UserProfileEntity> findByUserName(String userName) {
         return userPersistenceService.userget(userName);
     }
-
-
 }

@@ -10,9 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface RefreshTokenRepository extends JpaRepository<RefreshTokenEntity, Long> {
-    Optional<RefreshTokenEntity> findByToken(String token);
 
+    Optional<RefreshTokenEntity> findByToken(String token);
     @Modifying
     int deleteByUser(UserEntity user);
-
 }

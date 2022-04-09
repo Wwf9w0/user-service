@@ -20,7 +20,7 @@ public class UserPersistenceService {
     private final UserProfileRepository repository;
 
     @Transactional
-    public UserEntity saveUser(UserEntity user){
+    public UserEntity saveUser(UserEntity user) {
         UserProfileEntity userProfile = new UserProfileEntity();
         userProfile.setEmail(user.getUserProfile().getEmail());
         userProfile.setFirstName(user.getUserProfile().getFirstName());
@@ -29,7 +29,7 @@ public class UserPersistenceService {
         return userRepository.save(user);
     }
 
-    public Optional<UserProfileEntity> userget(String username){
+    public Optional<UserProfileEntity> userget(String username) {
         return repository.findByUserName(username);
     }
 }

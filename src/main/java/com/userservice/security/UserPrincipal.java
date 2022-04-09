@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.enums.UserStatus;
 import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,10 +13,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class UserPrincipal implements UserDetails {
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -91,6 +91,7 @@ public class UserPrincipal implements UserDetails {
         UserPrincipal u = (UserPrincipal) o;
         return Objects.equals(id, u.getId());
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

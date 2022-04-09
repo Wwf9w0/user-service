@@ -1,12 +1,9 @@
 package com.userservice.service;
 
 import com.userservice.persistence.jpa.entity.UserEntity;
-import com.userservice.persistence.jpa.enums.AuthType;
-import com.userservice.persistence.jpa.repository.UserProfileRepository;
 import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,19 +21,19 @@ public class UserDetailService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        UserEntity  user = userRepository.findByUserName(userName)
+        UserEntity user = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with userName: " + userName));
         return createPrincipal(user);
     }
 
     @Transactional
-    public UserDetails createPrincipal(final UserEntity user){
+    public UserDetails createPrincipal(final UserEntity user) {
         final UserPrincipal userPrincipal = UserPrincipal.constructUserPrinciple(user);
         return userPrincipal;
     }
 
     @Transactional
-    public UserPrincipal loadByUserId(final Long id){
+    public UserPrincipal loadByUserId(final Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
         return UserPrincipal.constructUserPrinciple(user);
 
