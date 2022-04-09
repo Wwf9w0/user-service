@@ -1,5 +1,6 @@
 package com.userservice.controller;
 
+import com.userservice.model.UserDetail;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.security.UserPrincipal;
 import com.userservice.service.UserProfileService;
@@ -19,7 +20,7 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @GetMapping
-    public ResponseEntity<UserProfileEntity> getUserProfile(@AuthenticationPrincipal final UserPrincipal userPrincipal){
+    public ResponseEntity<UserDetail> getUserProfile(@AuthenticationPrincipal final UserPrincipal userPrincipal){
         return ResponseEntity.ok(userProfileService.getProfile(userPrincipal.getId()));
     }
 
