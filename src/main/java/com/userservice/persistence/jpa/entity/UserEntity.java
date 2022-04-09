@@ -43,7 +43,7 @@ public class UserEntity {
     private Long id;
 
     @Column
-    private String extarnalNo;
+    private Long extarnalNo;
 
     @Column
     private String password;

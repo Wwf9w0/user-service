@@ -26,8 +26,6 @@ public class UserService {
         BCryptPasswordEncoder password1 = new BCryptPasswordEncoder();
         String p = password1.encode(user.getPassword());
         user.setPassword(p);
-        String externalId = UUID.randomUUID().toString();
-        user.setExtarnalNo(externalId);
         log.info(user.getPassword());
         return userPersistenceService.saveUser(user);
     }
