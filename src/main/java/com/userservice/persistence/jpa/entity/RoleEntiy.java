@@ -1,3 +1,4 @@
+/*
 package com.userservice.persistence.jpa.entity;
 
 import com.userservice.persistence.jpa.enums.Role;
@@ -30,3 +31,4 @@ public class RoleEntiy {
     @Column(length = 20)
     private Role name;
 }
+*/

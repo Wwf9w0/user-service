@@ -65,11 +65,11 @@ public class UserEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfileEntity userProfile;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+   /* @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<RoleEntiy> roles = new HashSet<>();
+    private Set<RoleEntiy> roles = new HashSet<>();*/
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate
