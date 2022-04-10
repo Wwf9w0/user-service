@@ -1,20 +1,33 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:./user
-    username: sa
-    #generate-unique-name: false
+    driver-class-name: com.mysql.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: local
   jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 
 server:
   port: 8082
   connectionTimeout: 20000
+
+---
+### local profile
+spring:
+  profiles: local
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/user
+    username: username
+    password: pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
 security:
   jwtSecret: localSecret

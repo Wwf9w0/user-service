@@ -1,10 +1,14 @@
 version: '3.1'
+
 services:
+  # Database
   db:
-    image: mysql/mysql-server
+    platform: linux/x86_64
+    image: mysql/mysql-server:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mysql
-    ports:
-      - "3306:3306"
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: user
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
+    hostname: localhost
