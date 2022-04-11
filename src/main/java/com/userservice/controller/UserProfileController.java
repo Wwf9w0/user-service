@@ -23,5 +23,9 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.getProfile(userPrincipal.getId()));
     }
 
-
+  //TODO get profile by id
+    // TODO getProfile ex no
+    //TODO updateUserDetail
+    //TODO default pp
+    // TODO upload
 }

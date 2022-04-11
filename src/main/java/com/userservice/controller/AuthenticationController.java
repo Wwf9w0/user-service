@@ -24,4 +24,6 @@ public class AuthenticationController {
             @RequestBody final LoginRequest request){
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
+
+    //TODO logout
 }
