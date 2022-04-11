@@ -67,7 +67,7 @@ public class JwtTokenProvider {
     }
 
     public Claims populateClaims(UserPrincipal userPrincipal) {
-        Claims claims = Jwts.claims().setSubject(userPrincipal.getUsername());
+        Claims claims = Jwts.claims().setSubject(Long.toString(userPrincipal.getId()));
         claims.put("scopes", userPrincipal.getAuthorities().stream().map(Objects::toString).collect(Collectors.toList()));
         return claims;
     }
