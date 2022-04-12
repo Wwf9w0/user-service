@@ -11,6 +11,7 @@ spring:
       dialect: org.hibernate.dialect.MySQL5Dialect
 
 
+
 server:
   port: 8082
   connectionTimeout: 20000
