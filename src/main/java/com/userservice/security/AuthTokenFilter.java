@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 
 @RequiredArgsConstructor
@@ -41,6 +42,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
            }
-            filterChain.doFilter(request,response);
+        filterChain.doFilter(request,response);
+
     }
 }
