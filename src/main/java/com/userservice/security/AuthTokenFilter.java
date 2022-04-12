@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 
 @RequiredArgsConstructor
@@ -31,17 +32,17 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-           final String jwtToken = tokenProvider.extractTokenRequest(request);
-           if (jwtToken == null){
-               if (StringUtils.isNotEmpty(jwtToken) && tokenProvider.validateJwtToken(jwtToken));
-               final Long id = tokenProvider.extractExtarnalNo(jwtToken);
-               final UserPrincipal userPrincipal = userDetailService.loadByUserId(id);
+               final String jwtToken = tokenProvider.extractTokenRequest(request);
+        if (!Objects.nonNull(jwtToken) || StringUtils.isNotEmpty(jwtToken)) {
+            final String userName = tokenProvider.extractUserName(jwtToken);
+            final UserPrincipal userPrincipal = (UserPrincipal) userDetailService.loadUserByUsername(userName);
 
                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                        new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
            }
-            filterChain.doFilter(request,response);
+        filterChain.doFilter(request,response);
+
     }
 }
