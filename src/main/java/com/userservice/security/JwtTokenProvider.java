@@ -32,7 +32,6 @@ public class JwtTokenProvider {
     private static final String BEARER = "Bearer";
     private final JwtProperties properties;
 
-
     public String generateJwtToken(Authentication authentication) {
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return generateAccessToken(userPrincipal.getId(), populateClaims(userPrincipal));
