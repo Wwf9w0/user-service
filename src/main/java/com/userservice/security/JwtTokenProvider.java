@@ -32,6 +32,7 @@ public class JwtTokenProvider {
     private static final String BEARER = "Bearer";
     private final JwtProperties properties;
 
+
     public String generateJwtToken(Authentication authentication) {
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return generateAccessToken(userPrincipal.getId(), populateClaims(userPrincipal));
@@ -94,7 +95,7 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    public String extractName(final String token){
+    public String extractUserName(final String token){
         return getClaimsByToken(token).getSubject();
     }
 

@@ -31,11 +31,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-           final String jwtToken = tokenProvider.extractTokenRequest(request);
-           if (jwtToken != null){
-               if (StringUtils.isNotEmpty(jwtToken));
-               final String name = tokenProvider.extractName(jwtToken);
-               final UserPrincipal userPrincipal = (UserPrincipal) userDetailService.loadUserByUsername(name);
+               final String jwtToken = tokenProvider.extractTokenRequest(request);
+        if (!Objects.nonNull(jwtToken) || StringUtils.isNotEmpty(jwtToken)) {
+            final String userName = tokenProvider.extractUserName(jwtToken);
+            final UserPrincipal userPrincipal = (UserPrincipal) userDetailService.loadUserByUsername(userName);
 
                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                        new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
