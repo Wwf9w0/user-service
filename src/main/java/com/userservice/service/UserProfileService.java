@@ -15,3 +15,4 @@ public class UserProfileService {
         return persistenceService.getProfile(id);
     }
 }
+
