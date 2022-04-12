@@ -19,4 +19,11 @@ public class UserProfilePersistenceService {
         UserProfileEntity userProfile = user.getUserProfile();
         return userProfile;
     }
+
+
+    public UserProfileEntity getUserById(Long id){
+
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        return userEntity.getUserProfile();
+    }
 }

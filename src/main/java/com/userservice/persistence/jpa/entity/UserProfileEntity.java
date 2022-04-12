@@ -1,6 +1,5 @@
 package com.userservice.persistence.jpa.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -8,7 +7,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.yaml.snakeyaml.events.Event;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

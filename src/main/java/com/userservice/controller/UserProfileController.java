@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user-profile")
 public class UserProfileController {
 
+    //TODO get profile by id ++
+    // TODO getProfile ex no
+    //TODO updateUserDetail - updateusername-update pp..
+    //TODO default pp
+    // TODO upload
+
     private final UserProfileService userProfileService;
 
     @GetMapping
@@ -23,5 +30,8 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.getProfile(userPrincipal.getId()));
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<UserProfileEntity> getUserById(@PathVariable Long id){
+        return ResponseEntity.ok(userProfileService.getUserById(id));
+    }
 }
