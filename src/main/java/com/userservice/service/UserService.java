@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +22,8 @@ public class UserService {
     public UserEntity save(UserEntity user) {
         BCryptPasswordEncoder password1 = new BCryptPasswordEncoder();
         String p = password1.encode(user.getPassword());
+        Random random = new Random();
+        user.setExtarnalNo(random.nextLong());
         user.setPassword(p);
         log.info(user.getPassword());
         return userPersistenceService.saveUser(user);
