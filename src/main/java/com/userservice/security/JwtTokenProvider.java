@@ -32,7 +32,6 @@ public class JwtTokenProvider {
     private static final String BEARER = "Bearer";
     private final JwtProperties properties;
 
-
     public String generateJwtToken(Authentication authentication) {
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return generateAccessToken(userPrincipal.getId(), populateClaims(userPrincipal));
@@ -95,7 +94,11 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
+<<<<<<< HEAD
     public String extractExtarnalNo(final String token){
+=======
+    public String extractName(final String token){
+>>>>>>> dec12f2d14bd0ff9c19329f8e16c6eda8d75cd9e
         return getClaimsByToken(token).getSubject();
     }
 

@@ -19,3 +19,4 @@ public class UserProfileService {
         return userProfilePersistenceService.getUserById(id);
     }
 }
+
