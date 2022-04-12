@@ -20,9 +20,9 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.google.common.net.HttpHeaders.AUTHORIZATION;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.SPACE;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Component
 @RequiredArgsConstructor
