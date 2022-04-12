@@ -1,8 +1,4 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-  main:
-    allow-bean-definition-overriding: true
   profiles:
     active: local
   jpa:
@@ -23,9 +19,9 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/user
-    username: username
-    password: pass
+    url: jdbc:mysql://mysqldb:3306/user?useSSL=false
+    username: sa
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
