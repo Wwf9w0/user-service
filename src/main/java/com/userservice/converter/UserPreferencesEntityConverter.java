@@ -16,7 +16,7 @@ import java.util.Date;
 public class UserPreferencesEntityConverter {
 
 
-    public UserPreferencesDto toPreDto(UserPreferencesEntity preferences){
+    public static UserPreferencesDto toPreDto(UserPreferencesEntity preferences){
         return UserPreferencesDto.builder()
                 .id(preferences.getId())
                 .sharePost(preferences.getSharePost())

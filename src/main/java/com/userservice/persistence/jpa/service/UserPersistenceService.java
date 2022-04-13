@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -39,6 +40,14 @@ public class UserPersistenceService {
 
     public UserEntity getUserByUserName(String userName){
         return userRepository.findByUserName(userName).orElse(null);
+    }
+
+    public List<UserEntity> getAllUser(){
+        return userRepository.findAll();
+    }
+
+    public UserEntity getUserById(Long id){
+        return Objects.requireNonNull(userRepository.findById(id).orElse(null));
     }
 
     private String userPasswordEncode(String password){

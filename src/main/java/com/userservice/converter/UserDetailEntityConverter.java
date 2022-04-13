@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailEntityConverter {
 
-    public UserProfileDto toProfileDto(UserProfileEntity userProfile){
+    public static UserProfileDto toProfileDto(UserProfileEntity userProfile){
         return UserProfileDto.builder()
                 .id(userProfile.getId())
                 .firstName(userProfile.getFirstName())

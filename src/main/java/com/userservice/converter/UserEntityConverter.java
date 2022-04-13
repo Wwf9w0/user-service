@@ -9,6 +9,9 @@ import com.userservice.persistence.jpa.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class UserEntityConverter {
@@ -29,6 +32,12 @@ public class UserEntityConverter {
                 .createdDate(user.getCreatedDate())
                 .lastModifiedDate(user.getLastModifiedDate())
                 .build();
+    }
+
+    public List<UserDto> toUserDtoList(List<UserEntity> userEntities){
+        return userEntities.stream()
+                .map(this::toUserDto)
+                .collect(Collectors.toList());
     }
 
 

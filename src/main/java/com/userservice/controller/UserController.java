@@ -27,19 +27,19 @@ public class UserController {
     private final UserRepository repository;
 
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody UserCreateRequest request){
+    public ResponseEntity<UserDto> save(@RequestBody UserCreateRequest request) {
         return ResponseEntity.ok(userService.saveUser(request));
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id){
-        return ResponseEntity.ok(Objects.requireNonNull(repository.findById(id).orElse(null)));
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<UserEntity>> getAllUser(){
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<UserDto>> getAllUser() {
+        return ResponseEntity.ok(userService.getAllUser());
     }
 
     // TODO ragister date

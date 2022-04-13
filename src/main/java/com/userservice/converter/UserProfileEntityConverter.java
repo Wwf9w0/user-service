@@ -15,9 +15,9 @@ import java.util.Date;
 @Getter
 @RequiredArgsConstructor
 public class UserProfileEntityConverter {
-    private final UserDetailEntityConverter userDetailEntityConverter;
+    private  final UserDetailEntityConverter userDetailEntityConverter;
 
-    public UserProfileDto toProfileDto(UserProfileEntity userProfile){
+    public static UserProfileDto toProfileDto(UserProfileEntity userProfile){
         return UserProfileDto.builder()
                 .id(userProfile.getId())
                 .firstName(userProfile.getFirstName())
@@ -32,7 +32,7 @@ public class UserProfileEntityConverter {
                 .build();
     }
 
-    public UserProfileEntity toEntity(UserProfileDto profileDto){
+    public static UserProfileEntity toEntity(UserProfileDto profileDto){
         return UserProfileEntity.builder()
                 .id(profileDto.getId())
                 .firstName(profileDto.getFirstName())
@@ -57,7 +57,7 @@ public class UserProfileEntityConverter {
                 .build();
     }
 
-    public UserProfileEntity requestToEntity(UserCreateRequest request){
+    public static UserProfileEntity requestToEntity(UserCreateRequest request){
         return UserProfileEntity.builder()
                 .email(request.getEmail())
                 .lastName(request.getLastName())
