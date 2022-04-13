@@ -54,4 +54,15 @@ public class UserProfileController {
         userProfileService.updateEmail(userPrincipal.getUsername(), requestedEmail);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/update/password")
+    public ResponseEntity<Void> updatePassword(
+            @AuthenticationPrincipal final UserPrincipal userPrincipal,
+            @RequestParam(value = "currentPassword") String currentPassword,
+            @RequestParam(value = "requestedPassword") String requestedPassword){
+        userProfileService.updatePassword(userPrincipal.getUsername(),
+                currentPassword,
+                requestedPassword);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

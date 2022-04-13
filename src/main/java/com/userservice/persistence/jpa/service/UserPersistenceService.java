@@ -35,6 +35,7 @@ public class UserPersistenceService {
         return userRepository.findByUserName(userName).orElse(null);
     }
 
+
     public List<UserEntity> getAllUser() {
         return userRepository.findAll();
     }
@@ -43,7 +44,7 @@ public class UserPersistenceService {
         return Objects.requireNonNull(userRepository.findById(id).orElse(null));
     }
 
-    private String userPasswordEncode(String password) {
+    public String userPasswordEncode(String password) {
         BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
         return pw.encode(password);
     }

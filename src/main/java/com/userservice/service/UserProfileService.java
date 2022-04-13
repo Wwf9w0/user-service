@@ -40,5 +40,13 @@ public class UserProfileService {
                             String requestedEmail){
         userProfilePersistenceService.updateEmail(userName, requestedEmail);
     }
+
+    public void updatePassword(String userName,
+                               String currentPassword,
+                               String requestedPassword){
+        userProfilePersistenceService.updatePassword(userName,
+                currentPassword,
+                requestedPassword);
+    }
 }
 

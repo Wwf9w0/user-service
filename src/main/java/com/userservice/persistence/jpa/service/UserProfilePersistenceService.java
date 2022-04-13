@@ -6,6 +6,7 @@ import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.service.EmailService;
+import com.userservice.service.PasswordService;
 import com.userservice.service.UserNameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class UserProfilePersistenceService {
     private final UserProfileEntityConverter userProfileEntityConverter;
     private final UserNameService userNameService;
     private final EmailService emailService;
+    private final PasswordService passwordService;
 
     public UserDetailResponse getProfile(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
@@ -53,5 +55,14 @@ public class UserProfilePersistenceService {
             throw new RuntimeException();
         }
         emailService.updateEmail(userName,requestedEmail);
+    }
+
+
+    public void updatePassword(String userName,
+                               String currentPassword,
+                               String requestedPassword){
+        passwordService.updatePassword(userName,
+                currentPassword,
+                requestedPassword);
     }
 }
