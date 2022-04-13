@@ -57,6 +57,8 @@ public class UserEntity {
     private UserPreferencesEntity userPreferences;
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfileEntity userProfile;
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserNameEntity userNameEntity;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate

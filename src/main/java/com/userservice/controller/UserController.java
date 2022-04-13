@@ -2,7 +2,6 @@ package com.userservice.controller;
 
 import com.userservice.model.dto.UserDto;
 import com.userservice.model.request.UserCreateRequest;
-import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +21,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository repository;
 
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody UserCreateRequest request) {
         return ResponseEntity.ok(userService.saveUser(request));
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {

@@ -6,6 +6,7 @@ import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.persistence.jpa.repository.UserRepository;
+import com.userservice.service.UserNameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class UserProfilePersistenceService {
 
     private final UserRepository userRepository;
     private final UserProfileEntityConverter userProfileEntityConverter;
-    private final UserDetailEntityConverter userDetailEntityConverter;
+    private final UserNameService userNameService;
 
     public UserDetailResponse getProfile(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
@@ -38,11 +39,14 @@ public class UserProfilePersistenceService {
     }
 
 
-    private void updateNickName(String userName,
+    private void updateNickName(String requestedUserName,
                                 UserEntity user,
                                 UserProfileEntity userProfile){
-        if (Objects.nonNull(userName) && !Objects.equals(userName, user.getUserName())){
-
+        if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName, user.getUserName())){
+            //TODO added exception handle
+            throw new RuntimeException();
         }
+        userNameService.updateUserName(user.getUserName(), requestedUserName);
+
     }
 }
