@@ -18,7 +18,6 @@ public class NickNamePersistenceService {
             String currentUserName,
             String requestedUserName){
         if (StringUtils.isEmpty(requestedUserName) || Objects.equals(currentUserName, requestedUserName)){
-            return;
         }
 
 

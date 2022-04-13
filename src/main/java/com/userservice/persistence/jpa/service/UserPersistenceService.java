@@ -2,12 +2,8 @@ package com.userservice.persistence.jpa.service;
 
 import com.userservice.converter.UserEntityConverter;
 import com.userservice.model.dto.UserDto;
-import com.userservice.model.dto.UserPreferencesDto;
-import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.request.UserCreateRequest;
 import com.userservice.persistence.jpa.entity.UserEntity;
-import com.userservice.persistence.jpa.entity.UserProfileEntity;
-import com.userservice.persistence.jpa.repository.UserProfileRepository;
 import com.userservice.persistence.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -52,7 +47,6 @@ public class UserPersistenceService {
 
     private String userPasswordEncode(String password){
         BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
-        String encodePassword = pw.encode(password);
-        return encodePassword;
+        return pw.encode(password);
     }
 }

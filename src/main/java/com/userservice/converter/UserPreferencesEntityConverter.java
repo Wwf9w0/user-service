@@ -1,14 +1,10 @@
 package com.userservice.converter;
 
 import com.userservice.model.dto.UserPreferencesDto;
-import com.userservice.model.request.UserCreateRequest;
 import com.userservice.persistence.jpa.entity.UserPreferencesEntity;
-import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 @Getter

@@ -1,7 +1,6 @@
 package com.userservice.service;
 
 import com.userservice.converter.UserProfileEntityConverter;
-import com.userservice.model.dto.UserDto;
 import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
@@ -26,7 +25,7 @@ public class UserProfileService {
 
     public UserProfileDto getProfileByUserName(String userName){
         UserProfileEntity userProfile = userProfilePersistenceService.getProfileByUserName(userName);
-        return userProfileEntityConverter
+        return UserProfileEntityConverter
                 .toProfileDto(userProfile);
     }
 }

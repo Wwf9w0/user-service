@@ -1,8 +1,6 @@
 package com.userservice.converter;
 
 import com.userservice.model.dto.UserDto;
-import com.userservice.model.dto.UserPreferencesDto;
-import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.request.UserCreateRequest;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.enums.UserStatus;

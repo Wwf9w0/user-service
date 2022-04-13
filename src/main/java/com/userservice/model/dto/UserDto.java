@@ -1,22 +1,11 @@
 package com.userservice.model.dto;
 
-import com.userservice.persistence.jpa.entity.UserPreferencesEntity;
-import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Getter
