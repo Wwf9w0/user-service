@@ -1,12 +1,15 @@
 package com.userservice.converter;
 
 import com.userservice.model.dto.UserProfileDto;
+import com.userservice.model.request.UserCreateRequest;
 import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 @Getter
@@ -29,6 +32,21 @@ public class UserProfileEntityConverter {
                 .build();
     }
 
+    public UserProfileEntity toEntity(UserProfileDto profileDto){
+        return UserProfileEntity.builder()
+                .id(profileDto.getId())
+                .firstName(profileDto.getFirstName())
+                .lastName(profileDto.getLastName())
+                .email(profileDto.getEmail())
+                .birthDate(profileDto.getBirthDate())
+                .gender(profileDto.getGender())
+                .profilePhoto(profileDto.getProfilePhoto())
+                .isUserNameConfirmed(profileDto.getIsUserNameConfirmed())
+                .createdDate(profileDto.getCreatedDate())
+                .lastModifiedDate(profileDto.getLastModifiedDate())
+                .build();
+    }
+
     public UserDetailResponse toResponse(UserEntity user){
         return UserDetailResponse.builder()
                 .profilePhoto(user.getUserProfile().getProfilePhoto())
@@ -36,6 +54,16 @@ public class UserProfileEntityConverter {
                 .id(user.getId())
                 .userName(user.getUserName())
                 .userProfileDto(userDetailEntityConverter.toProfileDto(user.getUserProfile()))
+                .build();
+    }
+
+    public UserProfileEntity requestToEntity(UserCreateRequest request){
+        return UserProfileEntity.builder()
+                .email(request.getEmail())
+                .lastName(request.getLastName())
+                .birthDate(new Date())
+                .firstName(request.getFirstName())
+                .gender(request.getGender())
                 .build();
     }
 }

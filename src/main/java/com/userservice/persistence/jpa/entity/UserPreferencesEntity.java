@@ -1,6 +1,9 @@
 package com.userservice.persistence.jpa.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,7 +25,9 @@ import java.util.Date;
 @ToString
 @Table(name = "user_preferences")
 @Entity
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class UserPreferencesEntity {
 

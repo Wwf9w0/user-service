@@ -1,6 +1,9 @@
 package com.userservice.persistence.jpa.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,17 +27,17 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Builder
 @Table(name = "user", indexes = {@Index(name = "IDX_USER_ID", columnList = "id")})
 @EntityListeners(AuditingEntityListener.class)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private Long externalNo;
 
     @Column
     private String password;

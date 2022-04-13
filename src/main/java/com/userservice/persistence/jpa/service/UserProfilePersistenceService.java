@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,11 @@ public class UserProfilePersistenceService {
 
         UserEntity userEntity = userRepository.findById(id).orElse(null);
         return userEntity.getUserProfile();
+    }
+
+    public UserProfileEntity getProfileByUserName(String userName){
+       UserEntity user = userRepository.findByUserName(userName).orElse(null);
+       return user.getUserProfile();
     }
 
 

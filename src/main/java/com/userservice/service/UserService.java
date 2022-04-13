@@ -1,15 +1,15 @@
 package com.userservice.service;
 
-import com.userservice.persistence.jpa.entity.UserEntity;
-import com.userservice.persistence.jpa.entity.UserProfileEntity;
+import com.userservice.model.dto.UserDto;
+import com.userservice.model.dto.UserPreferencesDto;
+import com.userservice.model.dto.UserProfileDto;
+import com.userservice.model.request.UserCreateRequest;
 import com.userservice.persistence.jpa.service.UserPersistenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.Random;
+
 
 @RequiredArgsConstructor
 @Service
@@ -17,15 +17,19 @@ import java.util.Random;
 public class UserService {
 
     private final UserPersistenceService userPersistenceService;
+    private final UserProfileService userProfileService;
+    private final UserPreferencesService userPreferencesService;
 
-    public UserEntity save(UserEntity user) {
-        BCryptPasswordEncoder password1 = new BCryptPasswordEncoder();
-        String p = password1.encode(user.getPassword());
-        Random random = new Random();
-        user.setExternalNo(random.nextLong());
-        user.setPassword(p);
-        log.info(user.getPassword());
-        return userPersistenceService.saveUser(user);
+    public UserDto saveUser(UserCreateRequest request){
+        return userPersistenceService.savedUser(request);
+    }
+
+    private UserPreferencesDto getPreferencesUserName(String userName){
+        return userPreferencesService.getPreferencesByUserName(userName);
+    }
+
+    private UserProfileDto getProfileByUserName(String userName){
+        return userProfileService.getProfileByUserName(userName);
     }
 
 }

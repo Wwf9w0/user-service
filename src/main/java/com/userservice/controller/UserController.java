@@ -1,5 +1,7 @@
 package com.userservice.controller;
 
+import com.userservice.model.dto.UserDto;
+import com.userservice.model.request.UserCreateRequest;
 import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.repository.UserRepository;
 import com.userservice.service.UserService;
@@ -25,8 +27,8 @@ public class UserController {
     private final UserRepository repository;
 
     @PostMapping
-    public ResponseEntity<UserEntity> save(@RequestBody UserEntity user){
-        return ResponseEntity.ok(userService.save(user));
+    public ResponseEntity<UserDto> save(@RequestBody UserCreateRequest request){
+        return ResponseEntity.ok(userService.saveUser(request));
     }
 
 

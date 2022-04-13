@@ -27,7 +27,6 @@ import java.util.Date;
 public class UserDto {
 
     private Long id;
-    private Long externalNo;
     private String password;
     private String userName;
     private Integer status;
