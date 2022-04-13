@@ -35,7 +35,6 @@ public class PasswordPersistenceService {
                               String currentPassword,
                               String requestedPassword){
         UserEntity user = userPersistenceService.getUserByUserName(userName);
-      //  String currentPwCrypted = userPersistenceService.userPasswordEncode(currentPassword);
         if (Objects.nonNull(currentPassword)){
             String pw = userPersistenceService.userPasswordEncode(requestedPassword);
             user.setPassword(pw);
