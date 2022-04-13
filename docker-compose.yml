@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-version: '3.1'
-
-services:
+ version: '3.1'
+ services:
   # Database
   db:
     platform: linux/x86_64
@@ -13,7 +11,7 @@ services:
       MYSQL_USER: username
       MYSQL_PASSWORD: password
     hostname: localhost
-=======
+
 version: "3.1"
 services:
   server:
@@ -39,4 +37,3 @@ services:
 
 networks:
   spring-network:
->>>>>>> test
