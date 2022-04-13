@@ -52,7 +52,6 @@ public class UserProfilePersistenceService {
         if (!Objects.nonNull(requestedEmail)){
             throw new RuntimeException();
         }
-
         emailService.updateEmail(userName,requestedEmail);
     }
 }
