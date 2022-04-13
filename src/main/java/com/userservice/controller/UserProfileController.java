@@ -1,5 +1,6 @@
 package com.userservice.controller;
 
+import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.security.UserPrincipal;
@@ -30,7 +31,7 @@ public class UserProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserProfileEntity> getUserById(@PathVariable Long id){
+    public ResponseEntity<UserProfileDto> getUserById(@PathVariable Long id){
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }
 

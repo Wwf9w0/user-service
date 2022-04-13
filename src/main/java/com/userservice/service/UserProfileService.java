@@ -19,8 +19,8 @@ public class UserProfileService {
         return userProfilePersistenceService.getProfile(id);
     }
 
-    public UserProfileEntity getUserById(Long id){
-        return userProfilePersistenceService.getUserById(id);
+    public UserProfileDto getUserById(Long id){
+        return userProfileEntityConverter.toProfileDto(userProfilePersistenceService.getUserById(id));
     }
 
     public UserProfileDto getProfileByUserName(String userName){

@@ -23,14 +23,13 @@ public class UserProfilePersistenceService {
 
     public UserDetailResponse getProfile(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
-        return userProfileEntityConverter.toResponse(user);
+        return userProfileEntityConverter.toResponse(user != null ? user : null);
     }
 
 
     public UserProfileEntity getUserById(Long id){
-
         UserEntity userEntity = userRepository.findById(id).orElse(null);
-        return userEntity.getUserProfile();
+        return Objects.requireNonNull(userEntity).getUserProfile();
     }
 
     public UserProfileEntity getProfileByUserName(String userName){
