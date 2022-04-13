@@ -87,6 +87,10 @@ public class JwtTokenProvider {
         return authHeader.split(SPACE)[1];
     }
 
+    public boolean invalidateToken(final String token){
+        final String userName = extractUserName(token);
+        return Objects.nonNull(userName);
+    }
 
     public Claims getClaimsByToken(String token) {
         return Jwts.parser()
