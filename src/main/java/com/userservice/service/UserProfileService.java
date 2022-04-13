@@ -20,7 +20,9 @@ public class UserProfileService {
     }
 
     public UserProfileDto getUserById(Long id){
-        return userProfileEntityConverter.toProfileDto(userProfilePersistenceService.getUserById(id));
+        return userProfileEntityConverter
+                .toProfileDto(userProfilePersistenceService
+                        .getUserById(id));
     }
 
     public UserProfileDto getProfileByUserName(String userName){
