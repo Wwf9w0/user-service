@@ -16,14 +16,15 @@ public class UserProfilePersistenceService {
 
     public UserProfileEntity getProfile(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
-        UserProfileEntity userProfile = user.getUserProfile();
-        return userProfile;
+        assert user != null;
+        return user.getUserProfile();
     }
 
 
     public UserProfileEntity getUserById(Long id){
 
         UserEntity userEntity = userRepository.findById(id).orElse(null);
+        assert userEntity != null;
         return userEntity.getUserProfile();
     }
 }

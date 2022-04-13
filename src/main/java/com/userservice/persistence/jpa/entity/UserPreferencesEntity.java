@@ -1,6 +1,5 @@
 package com.userservice.persistence.jpa.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

@@ -18,5 +18,6 @@ public class UserProfileService {
     public UserProfileEntity getUserById(Long id){
         return userProfilePersistenceService.getUserById(id);
     }
+
 }
 

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserProfileController {
 
     //TODO get profile by id ++
-    // TODO getProfile ex no
     //TODO updateUserDetail - updateusername-update pp..
     //TODO default pp
     // TODO upload
@@ -34,4 +33,5 @@ public class UserProfileController {
     public ResponseEntity<UserProfileEntity> getUserById(@PathVariable Long id){
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }
+
 }

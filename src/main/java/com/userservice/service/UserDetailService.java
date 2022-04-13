@@ -30,13 +30,13 @@ public class UserDetailService implements UserDetailsService {
 
     @Transactional
     public UserDetails createPrincipal(final UserEntity user) {
-        final UserPrincipal userPrincipal = UserPrincipal.constructUserPrinciple(user);
-        return userPrincipal;
+        return UserPrincipal.constructUserPrinciple(user);
     }
 
     @Transactional
     public UserPrincipal loadByUserId(final Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
+        assert user != null;
         return UserPrincipal.constructUserPrinciple(user);
 
     }

@@ -34,7 +34,7 @@ public class UserEntity {
     private Long id;
 
     @Column
-    private Long extarnalNo;
+    private Long externalNo;
 
     @Column
     private String password;
