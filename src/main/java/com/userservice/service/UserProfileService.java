@@ -35,5 +35,10 @@ public class UserProfileService {
                                String currentUserName) {
         userProfilePersistenceService.updateNickName(requestedUserName, currentUserName);
     }
+
+    public void updateEmail(String userName,
+                            String requestedEmail){
+        userProfilePersistenceService.updateEmail(userName, requestedEmail);
+    }
 }
 

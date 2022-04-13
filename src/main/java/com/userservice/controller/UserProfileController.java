@@ -37,12 +37,21 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/username")
     public ResponseEntity<Void> updateUserName(
             @AuthenticationPrincipal final UserPrincipal userPrincipal,
             @RequestParam(value = "userName") String requestedUserName){
         userProfileService.updateUserName(requestedUserName, userPrincipal.getUsername());
         //TODO dewamke
         return new ResponseEntity< >(HttpStatus.OK);
+    }
+
+
+    @PostMapping("/update/email")
+    public ResponseEntity<Void> updateEmail(
+            @AuthenticationPrincipal final UserPrincipal userPrincipal,
+            @RequestParam(value = "email") String requestedEmail){
+        userProfileService.updateEmail(userPrincipal.getUsername(), requestedEmail);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
