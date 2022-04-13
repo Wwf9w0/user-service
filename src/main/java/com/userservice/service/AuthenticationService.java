@@ -1,8 +1,8 @@
 package com.userservice.service;
 
-import com.userservice.model.JwtAuthenticationResponse;
-import com.userservice.model.LoginRequest;
-import com.userservice.model.LogoutTokenResponse;
+import com.userservice.model.response.JwtAuthenticationResponse;
+import com.userservice.model.request.LoginRequest;
+import com.userservice.model.response.LogoutTokenResponse;
 import com.userservice.persistence.jpa.entity.RefreshTokenEntity;
 import com.userservice.security.JwtTokenProvider;
 import com.userservice.security.UserPrincipal;

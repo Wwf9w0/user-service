@@ -1,4 +1,4 @@
-package com.userservice.model;
+package com.userservice.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

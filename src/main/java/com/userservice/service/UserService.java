@@ -28,9 +28,4 @@ public class UserService {
         return userPersistenceService.saveUser(user);
     }
 
-
-
-    public Optional<UserProfileEntity> findByUserName(String userName) {
-        return userPersistenceService.userget(userName);
-    }
 }

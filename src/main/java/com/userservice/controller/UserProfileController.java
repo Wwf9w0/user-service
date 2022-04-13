@@ -1,5 +1,6 @@
 package com.userservice.controller;
 
+import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.security.UserPrincipal;
 import com.userservice.service.UserProfileService;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user-profile")
 public class UserProfileController {
 
-    //TODO get profile by id ++
     //TODO updateUserDetail - updateusername-update pp..
     //TODO default pp
     // TODO upload
@@ -25,7 +25,7 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     @GetMapping
-    public ResponseEntity<UserProfileEntity> getUserProfile(@AuthenticationPrincipal final UserPrincipal userPrincipal){
+    public ResponseEntity<UserDetailResponse> getUserProfile(@AuthenticationPrincipal final UserPrincipal userPrincipal){
         return ResponseEntity.ok(userProfileService.getProfile(userPrincipal.getId()));
     }
 

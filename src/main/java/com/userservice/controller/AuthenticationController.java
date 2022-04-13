@@ -1,8 +1,8 @@
 package com.userservice.controller;
 
-import com.userservice.model.JwtAuthenticationResponse;
-import com.userservice.model.LoginRequest;
-import com.userservice.model.LogoutTokenResponse;
+import com.userservice.model.response.JwtAuthenticationResponse;
+import com.userservice.model.request.LoginRequest;
+import com.userservice.model.response.LogoutTokenResponse;
 import com.userservice.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +33,4 @@ public class AuthenticationController {
     public ResponseEntity<LogoutTokenResponse> logout(@RequestHeader( value = AUTHORIZATION) final String token){
         return ResponseEntity.ok(authenticationService.logOut(token));
     }
-
-    //TODO logout
 }
