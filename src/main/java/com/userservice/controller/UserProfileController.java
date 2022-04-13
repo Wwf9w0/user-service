@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user-profile")
 public class UserProfileController {
 
-    //TODO updateUserDetail - updateusername-update pp..
     //TODO default pp
     // TODO upload
 
