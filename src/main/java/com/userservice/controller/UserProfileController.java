@@ -36,9 +36,9 @@ public class UserProfileController {
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }
 
-    @PostMapping("/update/userName")
+   /* @PostMapping("/update/userName")
     public ResponseEntity<Void> updateUserName(){
         //TODO dewamke
         ResponseEntity.ok().build();
-    }
+    }*/
 }
