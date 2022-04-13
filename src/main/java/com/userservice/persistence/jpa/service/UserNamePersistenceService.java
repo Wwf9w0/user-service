@@ -32,15 +32,18 @@ public class UserNamePersistenceService {
     }
 
     private void assertUserName(String requestedUserName, String currentName){
-        Optional<UserNameEntity> userNameEntity = Optional.ofNullable(userNameRepository.findByUserName(requestedUserName));
-        if (userNameEntity.isPresent()){
+        Optional<UserNameEntity> userNameEntity = userNameRepository.findByUserName(currentName);
+        if (Objects.equals(userNameEntity.get().getUserName(), requestedUserName)){
             //TODO add assert exception
             throw new RuntimeException();
         }
+        saveUserName(currentName, requestedUserName);
+    }
+
+    private void saveUserName(String currentName, String requestedUserName){
         Optional<UserEntity> user = userRepository.findByUserName(currentName);
         user.get().setUserName(requestedUserName);
         user.get().getUserNameEntity().setUserName(requestedUserName);
-        userNameRepository.save(userNameEntity.get());
         userRepository.save(user.get());
     }
 }

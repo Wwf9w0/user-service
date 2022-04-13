@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class UserEntityConverter {
-    private final UserPreferencesEntityConverter preferencesConverter;
+    private final UserNameEntityConverter userNameEntityConverter;
     private final UserProfileEntityConverter userProfileEntityConverter;
 
     public UserDto toUserDto(UserEntity user){
@@ -45,6 +45,7 @@ public class UserEntityConverter {
                 .password(request.getPassword())
                 .status(UserStatus.ACTIVE.getStatus())
                 .userProfile(userProfileEntityConverter.requestToEntity(request))
+                .userNameEntity(userNameEntityConverter.requestToEntity(request.getUserName()))
                 .build();
 
     }

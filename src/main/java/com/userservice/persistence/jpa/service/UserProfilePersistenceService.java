@@ -24,7 +24,7 @@ public class UserProfilePersistenceService {
 
     public UserDetailResponse getProfile(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
-        return userProfileEntityConverter.toResponse(user != null ? user : null);
+        return userProfileEntityConverter.toResponse(user);
     }
 
 
@@ -40,12 +40,12 @@ public class UserProfilePersistenceService {
 
 
     public void updateNickName(String requestedUserName,
-                                UserEntity user){
-        if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName, user.getUserName())){
+                                String currentUserName){
+        if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName,currentUserName)){
             //TODO added exception handle
             throw new RuntimeException();
         }
-        userNameService.updateUserName(user.getUserName(), requestedUserName);
+        userNameService.updateUserName(currentUserName, requestedUserName);
 
     }
 }

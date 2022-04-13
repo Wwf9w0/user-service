@@ -33,8 +33,8 @@ public class UserProfileService {
     }
 
     public  void updateUserName(String requestedUserName,
-                                UserEntity user){
-        userProfilePersistenceService.updateNickName(requestedUserName, user);
+                                String currentUserName){
+        userProfilePersistenceService.updateNickName(requestedUserName, currentUserName);
     }
 
 }
