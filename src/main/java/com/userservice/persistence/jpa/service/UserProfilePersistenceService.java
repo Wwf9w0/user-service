@@ -49,7 +49,7 @@ public class UserProfilePersistenceService {
 
     public void updateEmail(String userName,
                             String requestedEmail){
-        if (Objects.nonNull(requestedEmail)){
+        if (!Objects.nonNull(requestedEmail)){
             throw new RuntimeException();
         }
 
