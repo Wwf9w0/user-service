@@ -39,9 +39,8 @@ public class UserProfilePersistenceService {
     }
 
 
-    private void updateNickName(String requestedUserName,
-                                UserEntity user,
-                                UserProfileEntity userProfile){
+    public void updateNickName(String requestedUserName,
+                                UserEntity user){
         if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName, user.getUserName())){
             //TODO added exception handle
             throw new RuntimeException();
