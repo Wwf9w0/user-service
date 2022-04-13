@@ -23,11 +23,11 @@ public class RefreshTokenService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    public Optional<RefreshTokenEntity> findByToken(String token){
+    public Optional<RefreshTokenEntity> findByToken(String token) {
         return refreshTokenRepository.findByToken(token);
     }
 
-    public RefreshTokenEntity createRefreshToken(Long userId){
+    public RefreshTokenEntity createRefreshToken(Long userId) {
         RefreshTokenEntity refreshToken = new RefreshTokenEntity();
 
         refreshToken.setUser(userRepository.findById(userId).get());

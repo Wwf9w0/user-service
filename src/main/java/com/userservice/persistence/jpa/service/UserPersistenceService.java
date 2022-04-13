@@ -22,9 +22,8 @@ public class UserPersistenceService {
     private final UserRepository userRepository;
     private final UserEntityConverter userEntityConverter;
 
-
     @Transactional
-    public UserDto savedUser(UserCreateRequest request){
+    public UserDto savedUser(UserCreateRequest request) {
         final UserEntity user = userEntityConverter.toUserEntity(request);
         String pass = userPasswordEncode(request.getPassword());
         user.setPassword(pass);
@@ -32,20 +31,19 @@ public class UserPersistenceService {
         return userEntityConverter.toUserDto(savedUser);
     }
 
-
-    public UserEntity getUserByUserName(String userName){
+    public UserEntity getUserByUserName(String userName) {
         return userRepository.findByUserName(userName).orElse(null);
     }
 
-    public List<UserEntity> getAllUser(){
+    public List<UserEntity> getAllUser() {
         return userRepository.findAll();
     }
 
-    public UserEntity getUserById(Long id){
+    public UserEntity getUserById(Long id) {
         return Objects.requireNonNull(userRepository.findById(id).orElse(null));
     }
 
-    private String userPasswordEncode(String password){
+    private String userPasswordEncode(String password) {
         BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
         return pw.encode(password);
     }

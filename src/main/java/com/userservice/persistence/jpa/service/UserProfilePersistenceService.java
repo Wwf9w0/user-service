@@ -1,6 +1,5 @@
 package com.userservice.persistence.jpa.service;
 
-import com.userservice.converter.UserDetailEntityConverter;
 import com.userservice.converter.UserProfileEntityConverter;
 import com.userservice.model.response.UserDetailResponse;
 import com.userservice.persistence.jpa.entity.UserEntity;
@@ -27,25 +26,22 @@ public class UserProfilePersistenceService {
         return userProfileEntityConverter.toResponse(user);
     }
 
-
-    public UserProfileEntity getUserById(Long id){
+    public UserProfileEntity getUserById(Long id) {
         UserEntity userEntity = userRepository.findById(id).orElse(null);
         return Objects.requireNonNull(userEntity).getUserProfile();
     }
 
-    public UserProfileEntity getProfileByUserName(String userName){
-       UserEntity user = userRepository.findByUserName(userName).orElse(null);
-       return user.getUserProfile();
+    public UserProfileEntity getProfileByUserName(String userName) {
+        UserEntity user = userRepository.findByUserName(userName).orElse(null);
+        return user.getUserProfile();
     }
 
-
     public void updateNickName(String requestedUserName,
-                                String currentUserName){
-        if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName,currentUserName)){
+                               String currentUserName) {
+        if (Objects.nonNull(requestedUserName) && Objects.equals(requestedUserName, currentUserName)) {
             //TODO added exception handle
             throw new RuntimeException();
         }
         userNameService.updateUserName(currentUserName, requestedUserName);
-
     }
 }

@@ -32,7 +32,6 @@ public class JwtTokenProvider {
     private static final String BEARER = "Bearer";
     private final JwtProperties properties;
 
-
     public String generateJwtToken(Authentication authentication) {
         final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return generateAccessToken(userPrincipal.getId(), populateClaims(userPrincipal));
@@ -40,7 +39,7 @@ public class JwtTokenProvider {
 
     public String generateAccessToken(Long id, Claims claims) {
         final Date now = new Date();
-        final Date expireDate =  Date.from(Instant.ofEpochSecond(now.getTime() + properties.getJwtExpiretionMs()));
+        final Date expireDate = Date.from(Instant.ofEpochSecond(now.getTime() + properties.getJwtExpiretionMs()));
         return Jwts.builder().setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expireDate)
@@ -87,7 +86,7 @@ public class JwtTokenProvider {
         return authHeader.split(SPACE)[1];
     }
 
-    public boolean invalidateToken(final String token){
+    public boolean invalidateToken(final String token) {
         final String userName = extractUserName(token);
         return Objects.nonNull(userName);
     }
@@ -99,7 +98,7 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    public String extractUserName(final String token){
+    public String extractUserName(final String token) {
         return getClaimsByToken(token).getSubject();
     }
 

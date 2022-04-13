@@ -1,9 +1,7 @@
 package com.userservice.controller;
 
-import com.userservice.model.dto.UserDto;
 import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.response.UserDetailResponse;
-import com.userservice.persistence.jpa.entity.UserProfileEntity;
 import com.userservice.security.UserPrincipal;
 import com.userservice.service.UserProfileService;
 import lombok.RequiredArgsConstructor;

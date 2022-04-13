@@ -32,17 +32,16 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-               final String jwtToken = tokenProvider.extractTokenRequest(request);
+        final String jwtToken = tokenProvider.extractTokenRequest(request);
         if (!Objects.nonNull(jwtToken) || StringUtils.isNotEmpty(jwtToken)) {
             final String userName = tokenProvider.extractUserName(jwtToken);
             final UserPrincipal userPrincipal = (UserPrincipal) userDetailService.loadUserByUsername(userName);
 
             final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                       new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
-               usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-               SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-           }
-        filterChain.doFilter(request,response);
-
+                    new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
+            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        }
+        filterChain.doFilter(request, response);
     }
 }

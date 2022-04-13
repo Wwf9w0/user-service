@@ -20,27 +20,25 @@ public class UserNamePersistenceService {
     private final UserNameRepository userNameRepository;
     private final UserRepository userRepository;
 
-
     public void updateNickName(
             String currentUserName,
-            String requestedUserName){
-        if (StringUtils.isEmpty(requestedUserName) || Objects.equals(currentUserName, requestedUserName)){
+            String requestedUserName) {
+        if (StringUtils.isEmpty(requestedUserName) || Objects.equals(currentUserName, requestedUserName)) {
             return;
         }
         assertUserName(requestedUserName, currentUserName);
-
     }
 
-    private void assertUserName(String requestedUserName, String currentName){
+    private void assertUserName(String requestedUserName, String currentName) {
         Optional<UserNameEntity> userNameEntity = userNameRepository.findByUserName(currentName);
-        if (Objects.equals(userNameEntity.get().getUserName(), requestedUserName)){
+        if (Objects.equals(userNameEntity.get().getUserName(), requestedUserName)) {
             //TODO add assert exception
             throw new RuntimeException();
         }
         saveUserName(currentName, requestedUserName);
     }
 
-    private void saveUserName(String currentName, String requestedUserName){
+    private void saveUserName(String currentName, String requestedUserName) {
         Optional<UserEntity> user = userRepository.findByUserName(currentName);
         user.get().setUserName(requestedUserName);
         user.get().getUserNameEntity().setUserName(requestedUserName);

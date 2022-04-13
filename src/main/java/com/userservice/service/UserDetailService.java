@@ -19,7 +19,6 @@ public class UserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -38,6 +37,5 @@ public class UserDetailService implements UserDetailsService {
         UserEntity user = userRepository.findById(id).orElse(null);
         assert user != null;
         return UserPrincipal.constructUserPrinciple(user);
-
     }
 }

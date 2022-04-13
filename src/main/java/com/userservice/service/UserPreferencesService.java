@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class UserPreferencesService {
+
     private final UserPreferencesPersistenceService userPreferencesPersistenceService;
     private final UserPreferencesEntityConverter userPreferencesEntityConverter;
-
 
     public UserPreferencesDto getPreferencesByUserName(String userName) {
 

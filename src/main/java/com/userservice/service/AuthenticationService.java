@@ -45,7 +45,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public LogoutTokenResponse logOut(final String auth){
+    public LogoutTokenResponse logOut(final String auth) {
         final String token = jwtToken.extractTokenFromAuthHeader(auth);
 
         return LogoutTokenResponse.builder()

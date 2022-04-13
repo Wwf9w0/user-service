@@ -23,25 +23,24 @@ public class UserService {
     private final UserEntityConverter userEntityConverter;
     private final UserPreferencesService userPreferencesService;
 
-    public UserDto saveUser(UserCreateRequest request){
+    public UserDto saveUser(UserCreateRequest request) {
         return userPersistenceService.savedUser(request);
     }
 
-    public List<UserDto> getAllUser(){
+    public List<UserDto> getAllUser() {
         return userEntityConverter
                 .toUserDtoList(userPersistenceService.getAllUser());
     }
 
-    public UserDto getUserById(Long id){
+    public UserDto getUserById(Long id) {
         return userEntityConverter.toUserDto(userPersistenceService.getUserById(id));
     }
 
-    private UserPreferencesDto getPreferencesUserName(String userName){
+    private UserPreferencesDto getPreferencesUserName(String userName) {
         return userPreferencesService.getPreferencesByUserName(userName);
     }
 
-    private UserProfileDto getProfileByUserName(String userName){
+    private UserProfileDto getProfileByUserName(String userName) {
         return userProfileService.getProfileByUserName(userName);
     }
-
 }
