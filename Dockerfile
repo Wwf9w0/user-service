@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/user-service.jar user-service.jar
-EXPOSE 8082
-ENTRYPOINT ["java", "-jar", "user-service.jar"]
+ADD target/social-user-service.jar social-user-service.jar
+EXPOSE 8088
+ENTRYPOINT ["java", "-jar", "social-user-service.jar"]
