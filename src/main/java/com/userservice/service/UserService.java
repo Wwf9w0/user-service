@@ -5,14 +5,12 @@ import com.userservice.model.dto.UserDto;
 import com.userservice.model.dto.UserPreferencesDto;
 import com.userservice.model.dto.UserProfileDto;
 import com.userservice.model.request.UserCreateRequest;
-import com.userservice.persistence.jpa.entity.UserEntity;
 import com.userservice.persistence.jpa.service.UserPersistenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor

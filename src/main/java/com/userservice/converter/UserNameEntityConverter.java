@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserNameEntityConverter {
 
-
     public static UserNameEntity requestToEntity (String request){
         return UserNameEntity.builder()
                 .userName(request)
