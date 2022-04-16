@@ -101,5 +101,4 @@ public class JwtTokenProvider {
     public String extractUserName(final String token) {
         return getClaimsByToken(token).getSubject();
     }
-
 }
