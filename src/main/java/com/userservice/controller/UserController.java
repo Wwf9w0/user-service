@@ -36,6 +36,5 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAllUser() {
         return ResponseEntity.ok(userService.getAllUser());
     }
-
     // TODO ragister date
 }
