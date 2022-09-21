@@ -48,4 +48,9 @@ public class UserPersistenceService {
         BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
         return pw.encode(password);
     }
+
+    public UserDto getUserByProfileId(Long profileId) {
+        final UserEntity user = userRepository.findByDistincByProfile_Id(profileId);
+        return userEntityConverter.toUserDto(user);
+    }
 }

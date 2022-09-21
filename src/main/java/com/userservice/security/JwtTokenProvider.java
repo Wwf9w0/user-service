@@ -40,7 +40,8 @@ public class JwtTokenProvider {
     public String generateAccessToken(Long id, Claims claims) {
         final Date now = new Date();
         final Date expireDate = Date.from(Instant.ofEpochSecond(now.getTime() + properties.getJwtExpiretionMs()));
-        return Jwts.builder().setClaims(claims)
+        return Jwts.builder()
+                .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, properties.getJwtSecret())
@@ -67,7 +68,10 @@ public class JwtTokenProvider {
 
     public Claims populateClaims(UserPrincipal userPrincipal) {
         Claims claims = Jwts.claims().setSubject(userPrincipal.getUsername());
-        claims.put("scopes", userPrincipal.getAuthorities().stream().map(Objects::toString).collect(Collectors.toList()));
+        claims.put("scopes", userPrincipal.getAuthorities()
+                .stream()
+                .map(Objects::toString)
+                .collect(Collectors.toList()));
         return claims;
     }
 

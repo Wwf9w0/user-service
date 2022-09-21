@@ -33,7 +33,9 @@ public class AuthenticationService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         String token = jwtToken.generateJwtToken(authentication);
-        List<String> roles = userPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+        List<String> roles = userPrincipal.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         RefreshTokenEntity refreshTokenEntity = refreshTokenService.createRefreshToken(userPrincipal.getId());
 

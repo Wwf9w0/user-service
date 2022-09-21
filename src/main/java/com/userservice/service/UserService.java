@@ -27,6 +27,10 @@ public class UserService {
         return userPersistenceService.savedUser(request);
     }
 
+    public UserDto getUserByProfileId(Long profileId){
+        return userPersistenceService.getUserByProfileId(profileId);
+    }
+
     public List<UserDto> getAllUser() {
         return userEntityConverter
                 .toUserDtoList(userPersistenceService.getAllUser());

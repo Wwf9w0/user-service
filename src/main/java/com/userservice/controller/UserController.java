@@ -36,5 +36,10 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAllUser() {
         return ResponseEntity.ok(userService.getAllUser());
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserDto> getUserByProfileId(@PathVariable Long profileId){
+        return ResponseEntity.ok(userService.getUserByProfileId(profileId));
+    }
     // TODO ragister date
 }
